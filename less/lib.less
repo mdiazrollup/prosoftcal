@@ -1,0 +1,359 @@
+@main-color: #D31145;
+@main-brown: #695E4A;
+@light-brown: #f0efe7;
+@dark-grey:#646469;
+@white: #FFFFFF;
+@black: #000000;
+@grey:#666666;
+@opa-grey:#E8E8E8;
+@btn-gradient-start:#E46E8E;
+@btn-gradient-end:#D31145;
+@border-grey: #E0E0E0;
+@light-grey:#808080;
+@error-color:#ec5343;
+@map-blue:#7EC6FD;
+@signal-blue:#0019af;
+@font-color:#333333;
+@banner-blue:#1252AF;
+
+@font-face {
+  font-family: 'MyriadPro-Regular';
+  src: url('../fonts/MyriadPro-Regular.eot');
+  src: url('../fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/MyriadPro-Regular.woff') format('woff'),
+       url('../fonts/MyriadPro-Regular.ttf') format('truetype'),
+       url('../fonts/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyriadPro-Semibold';
+  src: url('../fonts/MyriadPro-Semibold.eot');
+  src: url('../fonts/MyriadPro-Semibold.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/MyriadPro-Semibold.woff') format('woff'),
+       url('../fonts/MyriadPro-Semibold.ttf') format('truetype'),
+       url('../fonts/MyriadPro-Semibold.svg#MyriadPro-Semibold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.sans-serif {
+	font-family: 'MyriadPro-Regular', sans-serif;
+}
+.sans-serif-bold{
+	font-family: 'MyriadPro-Semibold', sans-serif;
+}
+.times{
+	font-family: Times, serif;
+}
+.times-bold{
+	font-family: Times, serif;
+	font-weight:bold;
+}
+.arial{
+	font-family: Arial, sans-serif;
+}
+.arial-bold{
+	font-family: Arial, sans-serif;
+	font-weight:bold;
+}
+.clear-both {
+	clear: both;
+}
+.cursor-pointer {
+	cursor:pointer;
+	cursor:finger;
+}
+.cursor-none{
+	cursor:default;
+}
+.border-radius(@radius) {
+	-webkit-border-radius: @radius;
+	-khtml-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ie-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+}
+.border-bottom-left-radius(@radius) {
+	-webkit-border-bottom-left-radius: @radius;
+	-khtml-border-bottom-left-radius: @radius;
+	-moz-border-radius-bottomleft: @radius;
+	-ie-border-bottom-left-radius: @radius;
+	-o-border-bottom-left-radius: @radius;
+	border-bottom-left-radius: @radius;
+}
+.border-bottom-right-radius(@radius) {
+	-webkit-border-bottom-right-radius: @radius;
+	-khtml-border-bottom-right-radius: @radius;
+	-moz-border-radius-bottomright: @radius;
+	-ie-border-bottom-right-radius: @radius;
+	-o-border-bottom-right-radius: @radius;
+	border-bottom-right-radius: @radius;
+}
+.border-radius-top-left(@radius) {
+	-webkit-border-top-left-radius: @radius;
+	-khtml-border-top-left-radius: @radius;
+	-moz-border-radius-topleft: @radius;
+	-ie-border-top-left-radius: @radius;
+	-o-border-top-left-radius: @radius;
+	border-top-left-radius: @radius;
+}
+.border-radius-top-right(@radius) {
+	-webkit-border-top-right-radius: @radius;
+	-khtml-border-top-right-radius: @radius;
+	-moz-border-radius-topright: @radius;
+	-ie-border-top-right-radius: @radius;
+	-o-border-top-right-radius: @radius;
+	border-top-right-radius: @radius;
+}
+.unselectable { // from http://stackoverflow.com/a/2326028/689203
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -webkit-touch-callout: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+}
+.transition (@property, @duration, @function:linear) {
+    transition-property:@property;
+    -o-transition-property:@property;
+    -ie-transition-property:@property;
+    -moz-transition-property:@property;
+    -webkit-transition-property:@property;
+
+	transition-duration:@duration;
+    -o-transition-duration:@duration;
+    -ie-transition-duration:@duration;
+    -moz-transition-duration:@duration;
+    -webkit-transition-duration:@duration;
+
+    transition-timing-function:@function;
+    -o-transition-timing-function:@function;
+    -ie-transition-timing-function:@function;
+    -moz-transition-timing-function:@function;
+    -webkit-transition-timing-function:@function;
+}
+.transitions (@value1,@value2:X,...){
+    @value: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`;
+
+    -webkit-transition: @value;
+    -moz-transition: @value;
+    -ms-transition: @value;
+    -o-transition: @value;
+    -ie-transition:@value;
+    transition: @value;
+}
+.animation-timing-function(@function){
+	-webkit-animation-timing-function:@function;
+	-moz-animation-timing-function:@function;
+	-ms-animation-timing-function:@function;
+	-o-animation-timing-function:@function;
+	-ie-animation-timing-function:@function;
+	animation-timing-function:@function;
+}
+.animation-fill-mode(@mode){
+	-webkit-animation-fill-mode:@mode;
+	-moz-animation-fill-mode:@mode;
+	-ms-animation-fill-mode:@mode;
+	-o-animation-fill-mode:@mode;
+	-ie-animation-fill-mode:@mode;
+	animation-fill-mode:@mode;
+}
+.animation-duration(@time){
+	-webkit-animation-duration:@time;
+	-moz-animation-duration:@time;
+	-ms-animation-duration:@time;
+	-o-animation-duration:@time;
+	-ie-animation-duration:@time;
+	animation-duration:@time;
+}
+
+								
+								
+.animation-name(@name){
+	-webkit-animation-name:@name;
+	-moz-animation-name:@name;
+	-ms-animation-name:@name;
+	-o-animation-name:@name;
+	animation-name:@name;
+}
+.transform(@value){
+	-webkit-transform: @value;
+    -moz-transform: @value;
+    -ms-transform: @value;
+    -o-transform: @value;
+    -ie-transform:@value;
+    transform: @value;
+}
+.opacity (@opacity) {
+    @opacityPercentage: @opacity * 100;
+    opacity: @opacity;
+    -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=(@{opacityPercentage}))";
+    filter: ~"alpha(opacity =@{opacityPercentage})";
+}
+
+.background-linear-horizontal-gradient(@from,@to){
+	/* Old browsers */
+	background: @from;
+	/* W3C */
+	background: linear-gradient(to left,  @from 0%,@to 100%);
+	/* FF3.6+ */
+	background: -moz-linear-gradient(left, @from 0%, @to 101%);
+	/* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,@from), color-stop(100%,@to));
+	/* Chrome10+,Safari5.1+ */
+	background: -webkit-linear-gradient(left,  @from 0%,@to 100%);
+	/* IE6-9 */
+	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{from}', endColorstr='@{to}',GradientType=1)";
+	/* Opera 11.10+ */
+	background: -o-linear-gradient(left,  @from 0%,@to 100%);
+	/* IE10+ */
+	background: -ms-linear-gradient(left,  @from 0%,@to 100%);
+}
+.background-linear-gradient(@from,@to) {
+	/* Old browsers */
+	background: @from;
+	/* W3C */
+	background: linear-gradient(to bottom,  @from 0%,@to 100%);
+	/* FF3.6+ */
+	background: -moz-linear-gradient(top, @from 0%, @to 101%);
+	/* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@from), color-stop(100%,@to));
+	/* Chrome10+,Safari5.1+ */
+	background: -webkit-linear-gradient(top,  @from 0%,@to 100%);
+	/* IE6-9 */
+	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{from}', endColorstr='@{to}',GradientType=0)";
+	/* Opera 11.10+ */
+	background: -o-linear-gradient(top,  @from 0%,@to 100%);
+	/* IE10+ */
+	background: -ms-linear-gradient(top,  @from 0%,@to 100%);
+}
+
+.background-linear-gradient-and-image(@from,@to, @image, @position:center) {
+/*	TODO: refactor this mixin with background-linear-gradient*/
+	/* Old browsers */
+	background:@image no-repeat @position @from;
+	/* W3C */
+	background:@image no-repeat @position, linear-gradient(to bottom,  @from 0%,@to 100%);
+	/* FF3.6+ */
+	background:@image no-repeat @position, -moz-linear-gradient(top, @from 0%, @to 101%);
+	/* Chrome,Safari4+ */
+	background:@image no-repeat @position, -webkit-gradient(linear, left top, left bottom, color-stop(0%,@from), color-stop(100%,@to));
+	/* Chrome10+,Safari5.1+ */
+	background:@image no-repeat @position, -webkit-linear-gradient(top,  @from 0%,@to 100%);
+	/* IE6-9 */
+	/* TODO: Find a way to show images when a gradient filter is applied 
+	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{from}', endColorstr='@{to}',GradientType=0)";
+	*/
+	/* Opera 11.10+ */
+	background:@image no-repeat @position, -o-linear-gradient(top,  @from 0%,@to 100%);
+	/* IE10+ */
+	background:@image no-repeat @position, -ms-linear-gradient(top,  @from 0%,@to 100%);
+}
+.background-inner-shadow(@h-shadow,@v-shadow,@blur,@from,@to) {
+	/* Old browsers */
+	background-color: @from;
+	box-shadow:inset @h-shadow @v-shadow @blur @to;
+	-moz-box-shadow:inset @h-shadow @v-shadow @blur @to;
+	-webkit-box-shadow:inset @h-shadow @v-shadow @blur @to;
+}
+.box-shadow(@value1,@value2:X,...) {
+    @value: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`;
+    box-shadow:@value;
+	-moz-box-shadow:@value;
+	-webkit-box-shadow:@value;
+}
+.drop-shadow(@h-shadow,@v-shadow,@blur, @color:#777) {
+	.box-shadow(@h-shadow @v-shadow @blur @color)
+}
+.text-drop-shadow(@h-shadow,@v-shadow,@blur,@color:#777){
+	text-shadow: @h-shadow @v-shadow @blur @color;
+}
+
+.glow(@blur, @spread, @color) {
+	box-shadow: 0 0 @blur @spread @color;
+	-moz-box-shadow: 0 0 @blur @spread @color;
+	-webkit-box-shadow: 0 0 @blur @spread @color;
+}
+.clear-box-shadow(){
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+.clear-inner-shadow(){
+	background:none;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+.selection-color(@color) {
+	&::selection {
+		color:@color;
+	}
+	&::-moz-selection {
+		color:@color;
+	}
+	&::-webkit-selection {
+		color:@color;
+	}
+}
+.selection-background(@background) {
+	&::selection {
+		background:@background;
+	}
+	&::-moz-selection {
+		background:@background;
+	}
+	&::-webkit-selection {
+		background:@background;
+	}
+}
+.box-sizing(@sizing) {
+	box-sizing: @sizing;
+	-moz-box-sizing: @sizing;
+	-webkit-box-sizing: @sizing;
+}
+.box-shadow-none() {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+.placeholder-color(@color) {
+	&::-webkit-input-placeholder {color :@color;}
+	&:-moz-placeholder {color :@color;}
+	&::-moz-placeholder {color :@color;}
+	&:-ms-input-placeholder {color :@color;}
+	&:placeholder {color :@color;}
+}
+.placeholder-font-size(@size) {
+	&::-webkit-input-placeholder {color :@size;}
+	&:-moz-placeholder {color :@size;}
+	&::-moz-placeholder {color :@size;}
+	&:-ms-input-placeholder {color :@size;}
+	&:placeholder {color :@size;}
+}
+.no-shadow-on-tap(){
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.column-width(@width) {
+	column-width: @width;
+	-moz-column-width: @width;
+	-webkit-column-width: @width;
+}
+.column-count(@num-columns) {
+	-webkit-column-count: @num-columns;
+	-moz-column-count: @num-columns;
+	column-count: @num-columns;
+}
+.clear{
+	clear:both;
+}
+.wwrap{
+	white-space: normal;
+}

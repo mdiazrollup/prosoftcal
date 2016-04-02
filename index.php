@@ -1,7 +1,7 @@
 <?php
 include('php/calendar.php');
-$calendar = new Calendar(time(),50,"US");
-$calendar->draw();
+//$calendar = new Calendar(time(),50,"US");
+//$calendar->draw();
 ?>
 <!DOCTYPE html>
 <html class="">
@@ -37,7 +37,7 @@ $calendar->draw();
 			</div>
 		</form>
 	</section>
-	<section class="container calendar">
+	<section class="container calendar" id="result">
 	</section>
 </body>
 </html>

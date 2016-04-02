@@ -18,7 +18,22 @@ jQuery(document).ready(function() {
 
     	var isValid = validateForm({date:startdate,totaldays:days,cc:countrycode});
     	if(isValid.valid){
-    		alert('Send to server');
+            $.ajax({
+                type: "POST",
+                url: "./php/drawCalendar.php",
+                cache: false,
+                data: {
+                    starttime:startdate.getTime()/1000,
+                    totaldays:days,
+                    countrycode:countrycode
+                },
+                success: function(result,status,xhr){
+                    $('#result').html(result);
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.log(errorThrown);
+                }
+            });
     	}else{
     		alert(isValid.message);
     	}

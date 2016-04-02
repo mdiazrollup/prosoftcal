@@ -1,1 +1,42 @@
-@import "lib.less"
+@import "lib.less";
+body{
+	.sans-serif;
+	.month-container{
+		.sans-serif;
+		display: inline-block;
+    	float: left;
+    	margin: 30px;
+		.title{
+			text-align:center;
+		}
+		.label{
+			margin:0;
+			text-transform:uppercase;
+			li.title{
+				display:inline-block;
+				width:37px;
+				text-align:center;
+			}
+		}
+		.dates{
+			margin:0;
+			li.day{
+				background:@grey;
+				display:inline-block;
+				width:35px;
+				height:20px;
+				line-height:20px;
+				text-align:center;
+				border: 1px solid @white;
+				float: left;
+
+				&.weekday{
+					background:@green;
+				}
+				&.weekend{
+					background:@yellow;
+				}
+			}
+		}
+	}
+}

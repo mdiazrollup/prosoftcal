@@ -1,5 +1,7 @@
 <?php
 class Calendar {
+    private $holidayApi = "http://holidayapi.com/v1/holidays?";
+
 	private $dayLabels = array("S","M","T","W","T","F","S");
      
     private $startYear=0;
@@ -21,6 +23,8 @@ class Calendar {
     private $totalDays = 1;
 
     private $countryCode = "US";
+
+    private $monthsHolidays =[];
 
 	public function __construct(){   
 		$a = func_get_args(); 
@@ -53,7 +57,7 @@ class Calendar {
     		$calendar .= $this->drawMonth($startTime);
     		$startTime = mktime(0, 0, 0, date("n",$startTime) + 1, 1,date("Y",$startTime));
     	}
-    	echo($calendar);
+        return $calendar;
     }
 
     private function drawMonth($datetime){
@@ -62,6 +66,7 @@ class Calendar {
     	$month = date("n",$datetime);
         $monthTitle = date("F",$datetime);
     	$year = date("Y",$datetime);
+        $this->monthsHolidays = $this->getMonthHolidays($month,$year,$this->countryCode);
     	$numberOfDays = $this->daysInMonth($month,$year);
     	$endDay = $numberOfDays;
     	if($month == $this->startMonth && $year == $this->startYear){
@@ -85,7 +90,8 @@ class Calendar {
                 $content.=$this->drawEmptyDays($dayofweek,$startWeekDay-1);
                 $dayofweek += $startWeekDay;
             }
-            $content.=$this->addDay($i,$dayofweek);
+            $isHoliday = $this->isHoliday($i,$month,$year);
+            $content.=$this->addDay($i,$dayofweek,$isHoliday);
             if($i == $endDay && $endWeekDay!=6){
                 $content.=$this->drawEmptyDays($endWeekDay+1,6);
             }
@@ -103,12 +109,11 @@ class Calendar {
         return $content;
     }
 
-    private function addDay($day,$dayofweek){
+    private function addDay($day,$dayofweek,$isHoliday=false){
         $content="";
         $styleClass= "";
         if(!empty($day)){
-            $styleClass=($dayofweek == 0 || $dayofweek == 6)?'weekend':'weekday';
-
+            $styleClass=($isHoliday)?'holiday':(($dayofweek == 0 || $dayofweek == 6)?'weekend':'weekday');
         }
         if($dayofweek == 0 ){
             $content.='<ul class="dates">';
@@ -130,6 +135,37 @@ class Calendar {
             $content.='<li class="title">'.$label.'</li>';
         }  
         return $content;
+    }
+
+    private function getMonthHolidays($month,$year,$countryCode){
+        $service_url = $this->holidayApi."country=".$countryCode."&year=".$year."&month=".$month;
+        $curl = curl_init($service_url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $curl_response = curl_exec($curl);
+        if ($curl_response === false) {
+            $info = curl_getinfo($curl);
+            curl_close($curl);
+            die('error occured during curl exec. Additioanl info: ' . var_export($info));
+        }
+        curl_close($curl);
+        $decoded = json_decode($curl_response);
+        if (isset($decoded->status) && $decoded->status != 200) {
+            die('error occured: ' . $decoded->response->status);
+        }
+        return $decoded->holidays;
+    }
+
+    private function isHoliday($day,$month,$year){
+        $date = mktime(0, 0, 0, $month,$day,$year);
+        for($i=0;$i<count($this->monthsHolidays);$i++){
+            $entry = $this->monthsHolidays[$i];
+            $dArray = split('-',$entry->date);
+            $entryTime = mktime(0, 0, 0, $dArray[1],$dArray[2],$dArray[0]);
+            if($date == $entryTime){
+                return true;
+            }
+        }
+        return false;
     }
 }
 ?>

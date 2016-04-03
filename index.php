@@ -1,8 +1,3 @@
-<?php
-include('php/calendar.php');
-//$calendar = new Calendar(time(),50,"US");
-//$calendar->draw();
-?>
 <!DOCTYPE html>
 <html class="">
 <head>
